@@ -11,6 +11,8 @@ import org.springframework.data.convert.ReadingConverter;
 import org.springframework.data.jdbc.core.convert.JdbcCustomConversions;
 import org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.lang.reflect.Type;
 import java.util.Collections;
@@ -22,6 +24,15 @@ public class FilmsServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FilmsServiceApplication.class, args);
+	}
+
+	@Configuration
+	public class WebMvcConfig implements WebMvcConfigurer {
+
+		@Override
+		public void addCorsMappings(CorsRegistry registry) {
+			registry.addMapping("/**");
+		}
 	}
 
 	@Configuration
